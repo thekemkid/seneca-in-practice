@@ -22,7 +22,7 @@ exercise, "this" will be bound to our Seneca instance. We will learn in future
 exercises how this bounding is done.
 
 Let's see an example "hello" service, defined in a "introduction" module or role.
-This is a little service that replies with an object with a member res which is "Hello World!" when it gets called!
+This is a little service that replies with an object with a property `res` which is "Hello World!" when it gets called!
 
 ```javascript
 module.exports = function introduction(options) {

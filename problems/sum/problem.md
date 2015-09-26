@@ -1,39 +1,27 @@
-Seneca lets you build a microservice system without worrying about how things will fit together in production.
-Every service consumes messages, which are JSON documents, with any internal structure you like.
-The producer of the message do not know which service is interested in receiving
-the message. Indeed, the service writer specify the property {italic}patterns{/italic} that you care about,
-and Seneca (with a little configuration help) makes sure that you get any messages matching those patterns, sent by other services.
-The patterns are very simple, just a list of key-value pairs that the top level properties of the JSON message document must match.
+So, now you should have created your first microservice with Seneca! Yay!
 
-Let's see as example a simple "hello" service, defined in a "greetings" module.
-"this" will be bound to the seneca instance, for the moment do not care about how to do that,
-just focus on the pattern/function structure.  
+This service was defined with the pattern `{role: 'greeting', cmd: 'hello'}` and the
+service `function` took a `msg` object with a `name` property and a `respond`
+callback, and called the callback with a null `error` and an object with the 
+property `res` set to 'hello `msg.name`!' 
 
-```javascript
-module.exports = function greeting ( options ) {
+A shorthand version of the pattern you wrote which Seneca would recognize is `'role:greeting,cmd:hello'`.
+For future examples we will use this shorthand form of pattern definition.
 
-    // Here we add a pattern and the related function.
-    this.add( 'role:greetings,cmd:hello', function( msg, respond ) {
-        var hello = "Hello " + msg.name;
-        respond( null, { answer: hello });
-    });
-};
+For this exercise you need to define a `math` module with a `sum` command!
+This `add` command should expect to have two properties in the incoming `msg` object, 
+the `leftHandSide` of the sum, and the `rightHandSide` of the sum, such that 
+`leftHandSide + rightHandSide` would be equal to the answer. You need to
+call the `respond` callback with a `reply` object with a `sum` property, 
+which is the answer to the sum!
 
-```
+Building on your previous solution, you will need to export a Microservice in which
+you want to add a `sum` command to the `math` role!
 
-The goal of the exercise is to build a simple {italic}sum{/italic} service.
-This service must sum two numbers.
-For the purpose of this exercise, do not require seneca directly, just create a
-module that export a function the defines the patterns, using `this.add` like in the
-above example.
+Hint:
+Remember you can write a shorthand version of the pattern like `'role:abc,cmd:xyz'` and
+the `respond` callback takes an `error` and `reply` object.
 
-``` javascript
-module.exports = function math( options ) {
-    
-    this.add( // TODO (...)
-    );
-}
-```
 
 When you have completed your program, you can run it in the test
 environment with:
