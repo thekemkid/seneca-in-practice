@@ -4,7 +4,7 @@ var workshopper = require('workshopper');
 var path = require('path');
 var menu = require('./problems/menu');
 var credits = require('./credits');
-var  hooray = require('workshopper-hooray');
+var hooray = require('workshopper-hooray');
 var more = require('workshopper-more')
 
 var fpath = function (f) {
